@@ -1,2 +1,1 @@
-# gentoo-overlay
-Personal Gentoo overlay. 
+# Gentoo overlay: malamut2014
