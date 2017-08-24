@@ -6,7 +6,7 @@ EAPI=6
 DESCRIPTION="Firefox Nightly Web Browser"
 HOMEPAGE="https://wiki.mozilla.org/Nightly"
 SRC_URI="
-	amd64? ( https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central/firefox-57.0a1.en-US.linux-x86_64.tar.bz2 -> firefox-nightly_x86_64-9999.tar.bz2 )"
+	amd64? ( https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=linux64&lang=en-US -> firefox-nightly_x86_64-9999.tar.bz2 )"
 MOZ_PN="nightly"
 
 LICENSE="MPL-2.0 GPL-2 LGPL-2.1"
