@@ -10,10 +10,11 @@ DESCRIPTION="A fast and easy-to-use tool for creating status bars."
 HOMEPAGE="https://github.com/jaagr/polybar"
 EGIT_REPO_URI="https://github.com/jaagr/polybar.git"
 EGIT_CLONE_TYPE="shallow"
+EGIT_COMMIT="${PV}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="x86 amd64"
 
 IUSE="alsa i3wm mpd github +network"
 RDEPEND="
@@ -30,6 +31,7 @@ RDEPEND="
 	network? ( net-wireless/wireless-tools )
 "
 DEPEND="${RDEPEND}"
+PATCHES[0]="${FILESDIR}/no-werror.patch"
 
 CMAKE_BUILD_TYPE=Release
 
