@@ -31,7 +31,6 @@ RDEPEND="
 	network? ( net-wireless/wireless-tools )
 "
 DEPEND="${RDEPEND}"
-PATCHES[0]="${FILESDIR}/no-werror.patch"
 
 CMAKE_BUILD_TYPE=Release
 
