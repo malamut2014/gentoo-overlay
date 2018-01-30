@@ -92,7 +92,7 @@ DEPEND="${COMMON_DEPEND}
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}-gcc7_fix.patch"
+	"${FILESDIR}/gcc7_fix.patch"
 	"${FILESDIR}/${PN}-0.92.1-automagic.patch"
 	"${FILESDIR}/${PN}-0.91_pre3-cppflags.patch"
 	"${FILESDIR}/${PN}-0.92.1-desktop.patch"
