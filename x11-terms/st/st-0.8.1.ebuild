@@ -26,7 +26,6 @@ DEPEND="
 "
 
 PATCHES=(
-"${FILESDIR}"/st-alpha-20171221-0ac685f.diff
 "${FILESDIR}"/st-clipboard-20180309-c5ba9c0.diff
 )
 
