@@ -27,6 +27,7 @@ DEPEND="
 
 PATCHES=(
 "${FILESDIR}"/st-clipboard-20180309-c5ba9c0.diff
+"${FILESDIR}"/st-alpha.diff
 )
 
 src_prepare() {
