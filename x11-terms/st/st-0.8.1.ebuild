@@ -26,10 +26,10 @@ DEPEND="
 "
 
 src_prepare() {
-	default
 	if use solarized_both; then 
 		epatch "${FILESDIR}/st-solarized-both-0.8.1.diff"
 	fi
+	default
 	sed -i \
 		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \
 		-e '/^STLDFLAGS/s|= .*|= $(LDFLAGS) $(LIBS)|g' \
