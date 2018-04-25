@@ -11,7 +11,7 @@ SRC_URI="https://dl.suckless.org/st/${P}.tar.gz"
 LICENSE="MIT-with-advertising"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~x86"
-IUSE="savedconfig"
+IUSE="clipboard savedconfig"
 
 RDEPEND="
 	>=sys-libs/ncurses-6.0:0=
