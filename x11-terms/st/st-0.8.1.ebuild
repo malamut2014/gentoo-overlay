@@ -28,10 +28,7 @@ DEPEND="
 src_prepare() {
 	default
 	if use solarized_both; then 
-		epatch "${FILESDIR}/st-solarized-both-20170626-b331da5.diff"
-	fi
-	if use clipboard; then 
-		epatch "${FILESDIR}/st-clipboard-20180309-c5ba9c0.diff"
+		epatch "${FILESDIR}/st-solarized-both-0.8.1.diff"
 	fi
 	sed -i \
 		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \
