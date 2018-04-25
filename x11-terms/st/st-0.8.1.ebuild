@@ -27,7 +27,9 @@ DEPEND="
 
 src_prepare() {
 	default
-	epatch "${FILESDIR}/st-alpha-20170509-5a10aca.diff"
+	if use clipboard; then 
+		epatch "${FILESDIR}/st-clipboard-20180309-c5ba9c0.diff"
+	fi
 	sed -i \
 		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \
 		-e '/^STLDFLAGS/s|= .*|= $(LDFLAGS) $(LIBS)|g' \
