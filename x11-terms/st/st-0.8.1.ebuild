@@ -27,7 +27,7 @@ DEPEND="
 
 src_prepare() {
 	default
-	#epatch "${FILESDIR}/st-alpha-20171221-0ac685f.diff"
+	epatch "${FILESDIR}/st-alpha-20170509-5a10aca.diff"
 	sed -i \
 		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \
 		-e '/^STLDFLAGS/s|= .*|= $(LDFLAGS) $(LIBS)|g' \
