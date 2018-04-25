@@ -1,0 +1,74 @@
+diff --git a/st.c b/st.c
+index 7c7ddff..2dc10c2 100644
+--- a/st.c
++++ b/st.c
+@@ -218,6 +218,7 @@ char *opt_line  = NULL;
+ char *opt_name  = NULL;
+ char *opt_title = NULL;
+ int oldbutton   = 3; /* button event on startup: 3 = release */
++int bellon      = 0;
+ 
+ static CSIEscape csiescseq;
+ static STREscape strescseq;
+@@ -2187,8 +2188,7 @@ tcontrolcode(uchar ascii)
+ 		} else {
+ 			if (!(win.state & WIN_FOCUSED))
+ 				xseturgency(1);
+-			if (bellvolume)
+-				xbell(bellvolume);
++			xbell(bellvolume);
+ 		}
+ 		break;
+ 	case '\033': /* ESC */
+diff --git a/st.h b/st.h
+index 44d4938..24a6eb6 100644
+--- a/st.h
++++ b/st.h
+@@ -231,6 +231,7 @@ extern char *opt_line;
+ extern char *opt_name;
+ extern char *opt_title;
+ extern int oldbutton;
++extern int bellon;
+ 
+ extern char *usedfont;
+ extern double usedfontsize;
+diff --git a/x.c b/x.c
+index c484dfc..0b59d0e 100644
+--- a/x.c
++++ b/x.c
+@@ -1484,7 +1484,17 @@ xseturgency(int add)
+ void
+ xbell(int vol)
+ {
+-	XkbBell(xw.dpy, xw.win, vol, (Atom)NULL);
++	if (vol)
++		XkbBell(xw.dpy, xw.win, vol, (Atom)NULL);
++
++	/* visual bell*/
++	if (!bellon) {
++		bellon = 1;
++		MODBIT(term.mode, !IS_SET(MODE_REVERSE), MODE_REVERSE);
++		redraw();
++		XFlush(xw.dpy);
++		MODBIT(term.mode, !IS_SET(MODE_REVERSE), MODE_REVERSE);
++	}
+ }
+ 
+ unsigned long
+@@ -1676,7 +1686,12 @@ run(void)
+ 					(handler[ev.type])(&ev);
+ 			}
+ 
+-			draw();
++			if (bellon) {
++				bellon = 0;
++				redraw();
++			}
++			else draw();
++
+ 			XFlush(xw.dpy);
+ 
+ 			if (xev && !FD_ISSET(xfd, &rfd))
+-- 
+2.15.1
+

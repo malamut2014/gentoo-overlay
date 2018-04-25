@@ -25,13 +25,9 @@ DEPEND="
 	x11-proto/xproto
 "
 
-PATCHES=(
-"${FILESDIR}"/st-clipboard-20180309-c5ba9c0.diff
-)
-
 src_prepare() {
 	default
-
+	epatch "${FILESDIR}/st-alpha-20171221-0ac685f.diff"
 	sed -i \
 		-e "/^X11LIB/{s:/usr/X11R6/lib:/usr/$(get_libdir)/X11:}" \
 		-e '/^STLDFLAGS/s|= .*|= $(LDFLAGS) $(LIBS)|g' \
