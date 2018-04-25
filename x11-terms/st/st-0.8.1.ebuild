@@ -11,7 +11,7 @@ SRC_URI="https://dl.suckless.org/st/${P}.tar.gz"
 LICENSE="MIT-with-advertising"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~x86"
-IUSE="clipboard savedconfig"
+IUSE="solarized_both clipboard savedconfig"
 
 RDEPEND="
 	>=sys-libs/ncurses-6.0:0=
@@ -27,6 +27,9 @@ DEPEND="
 
 src_prepare() {
 	default
+	if use solarized_both; then 
+		epatch "${FILESDIR}/st-solarized-both-20170626-b331da5.diff"
+	fi
 	if use clipboard; then 
 		epatch "${FILESDIR}/st-clipboard-20180309-c5ba9c0.diff"
 	fi
