@@ -21,8 +21,3 @@ RDEPEND="x11-libs/libxcb[xkb]
 
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	default
-	eautoreconf
-}
-
