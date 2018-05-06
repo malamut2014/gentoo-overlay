@@ -3,34 +3,26 @@
 
 EAPI=6
 
-inherit git-r3
+inherit git-r3 autotools
 
-DESCRIPTION="A fancy i3lock"
+DESCRIPTION="An improved i3lock"
 HOMEPAGE="https://github.com/cac03/i3lock"
 EGIT_REPO_URI="https://github.com/cac03/i3lock.git"
 LICENSE="BSD"
 SRC_URI=""
+
 SLOT="0"
 
-RDEPEND="app-shells/bash:0
-		media-gfx/imagemagick
-		virtual/awk
-		x11-misc/wmctrl
-		media-gfx/scrot
-		x11-misc/i3lock-color"
+RDEPEND="x11-libs/libxcb[xkb]
+		x11-libs/xcb-util
+		x11-libs/cairo[xcb]
+		x11-libs/libxkbcommon[X]
+		!x11-misc/i3lock"
 
 DEPEND="${RDEPEND}"
 
-INST_DIR="${D}/usr/share/i3lock"
-
-src_configure() {
-	# Fix script requiring icons to be in same dir
-	sed 's,$(readlink -f -- "$0"),"/usr/share/i3lock/",' lock > lock.sh
+src_prepare() {
+	default
+	eautoreconf
 }
 
-src_install() {
-	mkdir -p "$INST_DIR" "${D%/*}/usr/bin/"
-	cp lock.sh "${D}/usr/bin/lock"
-	chmod +x "${D}/usr/bin/lock"
-	cp -r icons "${INST_DIR}"
-}
